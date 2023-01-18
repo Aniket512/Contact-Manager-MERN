@@ -9,15 +9,6 @@ import { useCookies } from "react-cookie";
 const Register = () => {
     const theme = createTheme();
     const navigate = useNavigate();
-    const [cookies] = useCookies(["cookie-name"]);
-
-
-    useEffect(() => {
-      if (cookies.jwt) {
-        navigate("/");
-      }
-    }, [cookies, navigate]);
-  
   
     const [values, setValues] = useState({fname: "", lname: "", email: "", password: "" });
 
@@ -30,7 +21,7 @@ const Register = () => {
         e.preventDefault();
         try {
             const { data } = await axios.post(
-              "http://localhost:5000/api/register",
+              "https://contact-manager-mern-52h5.onrender.com/api/register",
               {
                 ...values,
               },

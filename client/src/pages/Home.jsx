@@ -68,9 +68,9 @@ export default function Home() {
             if (existingContact.length) {
                 await axios.put(`sapi/contacts/${existingContact[0]._id}`, { name, phone, email, userId });
             } else {
-                await axios.post('http://localhost:5000/api/contacts', { name, phone, email, userId });
+                await axios.post('https://contact-manager-mern-52h5.onrender.com/api/contacts', { name, phone, email, userId });
             }
-            const response = await axios.get(`http://localhost:5000/api/contacts?userId=${userId}`);
+            const response = await axios.get(`https://contact-manager-mern-52h5.onrender.com/api/contacts?userId=${userId}`);
             setContacts(response.data);
             setOpen(false);
             setName('');
@@ -85,7 +85,7 @@ export default function Home() {
 
     const deleteContacts = async () => {
         try {
-            await axios.delete("http://localhost:5000/api/contacts", { data: { ids: selected } });
+            await axios.delete("https://contact-manager-mern-52h5.onrender.com/api/contacts", { data: { ids: selected } });
             setContacts(prevContacts => prevContacts.filter(contact => !selected.includes(contact._id)));
             setSelected([]);
         } catch (error) {
@@ -100,7 +100,7 @@ export default function Home() {
                 navigate("/login");
             } else {
                 const { data } = await axios.post(
-                    "http://localhost:5000/api",
+                    "https://contact-manager-mern-52h5.onrender.com/api",
                     {},
                     {
                         withCredentials: true,
@@ -118,7 +118,7 @@ export default function Home() {
     useEffect(() => {
         const getContacts = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/contacts?userId=${userId}`)
+                const response = await axios.get(`https://contact-manager-mern-52h5.onrender.com/api/contacts?userId=${userId}`)
                 setContacts(response.data);
             }
             catch (error) {
